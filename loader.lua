@@ -325,6 +325,29 @@ Players.PlayerRemoving:Connect(function(player)
     RemoveChams(player)
 end)
 
+World_Sectioon:AddBind({
+    Name = "Toggle Nightmode",
+    Default = Enum.KeyCode.V,
+    Hold = false,
+    Callback = function()
+        if game.Lighting.TimeOfDay == "12:00:00" then
+            game.Lighting.TimeOfDay = "1:00:00"  
+        else
+            game.Lighting.TimeOfDay = "12:00:00" 
+        end
+    end    
+})
+
+World_Sectioon:AddBind({
+    Name = "Toggle Bloom",
+    Default = Enum.KeyCode.B,  
+    Hold = false,
+    Callback = function()
+        game.Lighting.Bloom.Enabled = not game.Lighting.Bloom.Enabled
+    end    
+})
+
+
 local isItemsEnabled = false
 
 Items_Sectioon:AddBind({
