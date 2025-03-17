@@ -3,7 +3,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Evo
 local Window = OrionLib:MakeWindow({Name = "one<font color='rgb(224, 171, 3)'>tap</font> v1 Alpha", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/linemaster2/esp-library/main/library.lua"))()
-local ItemESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Evolvez1/Onetap/refs/heads/main/loader.lua"))()
+local ItemESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Evolvez1/Onetap/refs/heads/main/Item_ESP_Library"))()
 
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
