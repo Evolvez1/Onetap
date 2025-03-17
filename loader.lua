@@ -3,6 +3,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Evo
 local Window = OrionLib:MakeWindow({Name = "one<font color='rgb(224, 171, 3)'>tap</font> v1 Alpha", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/linemaster2/esp-library/main/library.lua"))()
+local ItemESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Evolvez1/Onetap/refs/heads/main/loader.lua"))()
 
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
@@ -37,29 +38,11 @@ ESP.ShowTracer = false
 ESP.TracerThickness = 2
 ESP.ShowDistance = false
 
-local ESP_SETTINGS = {
-    BoxOutlineColor = Color3.new(0, 0, 0),
-    BoxColor = Color3.new(1, 1, 1),
-    NameColor = Color3.new(1, 1, 1),
-    HealthOutlineColor = Color3.new(0, 0, 0),
-    HealthHighColor = Color3.new(0, 1, 0),
-    HealthLowColor = Color3.new(1, 0, 0),
-    CharSize = Vector2.new(4, 6),
-    Teamcheck = false,
-    WallCheck = false,
-    Enabled = false,
-    ShowBox = false,
-    BoxType = "2D",
-    ShowName = false,
-    ShowHealth = false,
-    ShowDistance = false,
-    ShowSkeletons = false,
-    ShowTracer = false,
-    TracerColor = Color3.new(1, 1, 1),
-    TracerThickness = 2,
-    SkeletonsColor = Color3.new(1, 1, 1),
-    TracerPosition = "Bottom",
-}
+ItemESP.Enabled = false
+ItemESP.ShowBox = false
+ItemESP.BoxType = "Corner Box Esp"
+ItemESP.ShowName = false
+ItemESP.ShowDistance = false
 
 local Player_Visuals = Window:MakeTab({
     Name = "Player Visuals",
@@ -81,6 +64,10 @@ local World_Sectioon = World_Visuals:AddSection({
     Name = "World"
 })
 
+local World_VisualsColor_Sectioon = World_Sectioon:AddSection({
+    Name = "Colors"
+})
+
 local Player_Chams_Sectioon = Player_Visuals:AddSection({
     Name = "Player Chams"
 })
@@ -88,6 +75,8 @@ local Player_Chams_Sectioon = Player_Visuals:AddSection({
 local Player_VisualsColor_Sectioon = Player_Visuals:AddSection({
     Name = "Colors"
 })
+
+local isPlayersEnabled = false
 
 Player_Visuals_Sectioon:AddBind({
     Name = "Toggle Enable Players",
@@ -326,3 +315,75 @@ end)
 Players.PlayerRemoving:Connect(function(player)
     RemoveChams(player)
 end)
+
+local isItemsEnabled = false
+
+World_Visuals_Sectioon:AddBind({
+    Name = "Toggle Enable Items",
+    Default = Enum.KeyCode.E,
+    Hold = false,
+    Callback = function()
+        if isItemsEnabled then
+            ItemESP.Enabled = not ItemESP.Enabled
+        end
+    end    
+})
+
+World_Visuals_Sectioon:AddToggle({
+    Name = "Enable Items",
+    Default = false,
+    Callback = function(Enable_Players)
+        isItemsEnabled = Enable_Players
+        ItemESP.Enabled = Enable_Players
+    end    
+})
+
+World_Visuals_Sectioon:AddToggle({
+    Name = "Enable Name",
+    Default = false,
+    Callback = function(Enable_Name)
+        ItemESP.ShowName = Enable_Name
+    end    
+})
+
+World_Visuals_Sectioon:AddToggle({
+    Name = "Enable Distance",
+    Default = false,
+    Callback = function(Enable_Distance)
+        ItemESP.ShowDistance = Enable_Distance
+    end   
+})
+
+World_Visuals_Sectioon:AddToggle({
+    Name = "Enable Boxes",
+    Default = false,
+    Callback = function(Enable_Boxes)
+        ItemESP.ShowBox = Enable_Boxes
+    end   
+})
+
+World_Visuals_Sectioon:AddDropdown({
+    Name = "Box Types",
+    Default = "1",
+    Options = {"2D", "Corner Box Esp"},
+    Callback = function(SelectedBoxType)
+        ItemESP.BoxType = SelectedBoxType
+    end    
+})
+
+World_VisualsColor_Sectioon:AddColorpicker({
+	Name = "Name Color",
+	Default = Color3.fromRGB(224, 171, 3),
+	Callback = function(NameColorValue)
+        ItemESP.NameColor = NameColorValue
+	end	  
+})
+
+World_VisualsColor_Sectioon:AddColorpicker({
+	Name = "Box Color",
+	Default = Color3.fromRGB(224, 171, 3),
+	Callback = function(BoxColorValue)
+		ItemESP.BoxColor = BoxColorValue
+        ItemESP.BoxOutlineColor = BoxColorValue
+	end	  
+})
