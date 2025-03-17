@@ -64,8 +64,12 @@ local World_Sectioon = World_Visuals:AddSection({
     Name = "World"
 })
 
-local World_VisualsColor_Sectioon = World_Sectioon:AddSection({
-    Name = "Colors"
+local Items_Sectioon = World_Visuals:AddSection({
+    Name = "Items"
+})
+
+local Items_VisualsColor_Sectioon = World_Visuals:AddSection({
+    Name = "Items Colors"
 })
 
 local Player_Chams_Sectioon = Player_Visuals:AddSection({
@@ -136,6 +140,11 @@ Player_Visuals_Sectioon:AddDropdown({
     Options = {"2D", "Corner Box Esp"},
     Callback = function(SelectedBoxType)
         ESP.BoxType = SelectedBoxType
+        if (ESP.Enabled) then
+            ESP.Enabled = false
+            task.wait(0.1)
+            ESP.Enabled = true
+        end
     end    
 })
 
@@ -318,7 +327,7 @@ end)
 
 local isItemsEnabled = false
 
-World_Visuals_Sectioon:AddBind({
+Items_Sectioon:AddBind({
     Name = "Toggle Enable Items",
     Default = Enum.KeyCode.E,
     Hold = false,
@@ -329,7 +338,7 @@ World_Visuals_Sectioon:AddBind({
     end    
 })
 
-World_Visuals_Sectioon:AddToggle({
+Items_Sectioon:AddToggle({
     Name = "Enable Items",
     Default = false,
     Callback = function(Enable_Players)
@@ -338,7 +347,7 @@ World_Visuals_Sectioon:AddToggle({
     end    
 })
 
-World_Visuals_Sectioon:AddToggle({
+Items_Sectioon:AddToggle({
     Name = "Enable Name",
     Default = false,
     Callback = function(Enable_Name)
@@ -346,7 +355,7 @@ World_Visuals_Sectioon:AddToggle({
     end    
 })
 
-World_Visuals_Sectioon:AddToggle({
+Items_Sectioon:AddToggle({
     Name = "Enable Distance",
     Default = false,
     Callback = function(Enable_Distance)
@@ -354,7 +363,7 @@ World_Visuals_Sectioon:AddToggle({
     end   
 })
 
-World_Visuals_Sectioon:AddToggle({
+Items_Sectioon:AddToggle({
     Name = "Enable Boxes",
     Default = false,
     Callback = function(Enable_Boxes)
@@ -362,16 +371,21 @@ World_Visuals_Sectioon:AddToggle({
     end   
 })
 
-World_Visuals_Sectioon:AddDropdown({
+Items_Sectioon:AddDropdown({
     Name = "Box Types",
     Default = "1",
     Options = {"2D", "Corner Box Esp"},
     Callback = function(SelectedBoxType)
         ItemESP.BoxType = SelectedBoxType
+        if (ItemESP.Enabled) then
+            ItemESP.Enabled = false
+            task.wait(0.1)
+            ItemESP.Enabled = true
+        end
     end    
 })
 
-World_VisualsColor_Sectioon:AddColorpicker({
+Items_VisualsColor_Sectioon:AddColorpicker({
 	Name = "Name Color",
 	Default = Color3.fromRGB(224, 171, 3),
 	Callback = function(NameColorValue)
@@ -379,7 +393,7 @@ World_VisualsColor_Sectioon:AddColorpicker({
 	end	  
 })
 
-World_VisualsColor_Sectioon:AddColorpicker({
+Items_VisualsColor_Sectioon:AddColorpicker({
 	Name = "Box Color",
 	Default = Color3.fromRGB(224, 171, 3),
 	Callback = function(BoxColorValue)
