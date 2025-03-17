@@ -246,7 +246,7 @@ workspace.Items.ChildAdded:Connect(function(item)
     createEsp(item)
 end)
 
-workspace.Items.ChildRemoving:Connect(function(item)
+workspace.Items.ChildRemoved:Connect(function(item)
     removeEsp(item)
 end)
 
