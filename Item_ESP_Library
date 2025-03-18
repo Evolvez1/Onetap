@@ -69,7 +69,9 @@ local function removeEsp(item)
     if not esp then return end
 
     for _, drawing in pairs(esp) do
-        drawing:Remove()
+        if (typeof(drawing) ~= typeof({})) then
+            drawing:Remove()
+        end
     end
 
     cache[item] = nil
