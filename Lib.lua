@@ -28,8 +28,6 @@ local OrionLib = {
 --Feather Icons https://github.com/evoincorp/lucideblox/tree/master/src/modules/util - Created by 7kayoh
 local Icons = {}
 
--- // fixed pls
-
 local Success, Response = pcall(function()
 	Icons = HttpService:JSONDecode(game:HttpGetAsync("https://raw.githubusercontent.com/evoincorp/lucideblox/master/src/modules/util/icons.json")).icons
 end)
@@ -573,7 +571,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				AddThemeObject(MakeElement("Stroke"), "Stroke"),
 				MakeElement("Corner", 1)
 			}),
-			AddThemeObject(SetProps(MakeElement("Label", "onetap developer", WindowConfig.HidePremium and 14 or 13), {
+			AddThemeObject(SetProps(MakeElement("Label", "one<font color='rgb(224, 171, 3)'>tap</font> Dev", WindowConfig.HidePremium and 14 or 13), {
 				Size = UDim2.new(1, -60, 0, 13),
 				Position = WindowConfig.HidePremium and UDim2.new(0, 50, 0, 19) or UDim2.new(0, 50, 0, 12),
 				Font = Enum.Font.GothamBold,
